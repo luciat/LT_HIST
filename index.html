@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Developing Data Products Assignment</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Developing Data Products Assignment">
+  <meta name="author" content="Lúcia Teresa Schalcher da Fonseca">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/codefont.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Developing Data Products Assignment</h1>
+    <h2>Lead Time Histogram App</h2>
+    <p>Lúcia Teresa Schalcher da Fonseca<br/>System Analyst</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Agenda</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>Agile Metrics</li>
+<li>Lead Time Histogram App</li>
+<li>App Histogram Example</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Agile Metrics</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Apart from using tradicional agile metrics, we can manage an agile project flow with metrics like Work In Progress, Lead Time and Troughput.</p>
+
+<ul>
+<li>Work in Progress: the number of items being done at a given time;</li>
+<li>Lead Time: how long each item takes to get throught the process flow;</li>
+<li>Throughput: how many items are completed per unit of time.</li>
+</ul>
+
+<p>Tracking these metrics and visualizing them in analytic charts can bring visibility to problems in the process flow and make the process more predictable.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Lead Time Histogram App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>A Lead Time Histogram gives an overall idea of the shape of the project lead time distribution. This shape can give an insigth to problems that can be ocurring in the project process.</p>
+
+<p>The Lead Time Histogram App plots an histogram that shows frequency on the Y axis and lead time on the X axis. The percentile lines represents the percentage of the work items that took n days or less to complete, where n is the corresponding lead time value on X axis.</p>
+
+<p>Currently the App is a demo that uses data of a project with two type of work items. It plots the Lead Time Histogram with the percentile lines and shows a table with the average, median and the 30%, 50%, 70%, 85% and 95% lead times below the histogram. The type of work item to show can be selected.</p>
+
+<p>The idea is to improve the App with new features like:</p>
+
+<ul>
+<li>Selection of the project to analyse;</li>
+<li>Visibility of any type of work item used by the selected project;</li>
+<li>Fitting curves, like Weibull, that can help predicting future work. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="codefont" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>App Histogram Example</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;'>
+  <pre><code class="r">library(shiny)
+library(ggplot2)
+library(graphics)
+library(MASS)
+library(car)
+LT &lt;- read.csv(&quot;./LeadTime.csv&quot;, sep=&quot;,&quot;)
+vLT &lt;- c(0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50)
+qLTNames &lt;- c(&quot;30%&quot;, &quot;50%&quot;, &quot;70%&quot;, &quot;85%&quot;, &quot;95%&quot;)
+qLT &lt;- quantile(LT$LeadTime, probs=c(0.3, 0.5, 0.7, 0.85, 0.95))
+avg &lt;- mean(LT$LeadTime)
+md &lt;- median(LT$LeadTime)
+vQ &lt;- as.vector(qLT)
+freqLT &lt;- c(0, 5, 10, 15, 20, 25, 30)
+qTextPos &lt;- 23
+g &lt;- ggplot(LT) + labs(x=&quot;Lead time&quot;, y=&quot;Work done&quot;) +
+        geom_histogram(aes(x=LeadTime), color=&quot;black&quot;, fill=&quot;lightgreen&quot;, binwidth=1) +
+        scale_x_discrete(breaks=vLT, labels=waiver()) +
+        scale_y_discrete(breaks=freqLT, labels=waiver()) +
+        geom_vline(xintercept=vQ[1], color=&quot;#2ca25f&quot;, size=1, linetype=2) +
+        geom_vline(xintercept=vQ[2], color=&quot;green&quot;, size=1, linetype=2) +
+        geom_vline(xintercept=vQ[3], color=&quot;yellow&quot;, size=1, linetype=2) +
+        geom_vline(xintercept=vQ[4], color=&quot;orange&quot;, size=1, linetype=2) +
+        geom_vline(xintercept=vQ[5], color=&quot;red&quot;, size=1, linetype=2) +
+        geom_vline(xintercept=avg, color=&quot;blue&quot;, size=1, linetype=1) +
+        geom_text(label=qLTNames[1], x=vQ[1], y=qTextPos, size=3) +
+        geom_text(label=qLTNames[2], x=vQ[2], y=qTextPos, size=3) +
+        geom_text(label=qLTNames[3], x=vQ[3], y=qTextPos, size=3) +
+        geom_text(label=qLTNames[4], x=vQ[4], y=qTextPos, size=3) +
+        geom_text(label=qLTNames[5], x=vQ[5], y=qTextPos, size=3)
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+</div>
+<div>
+  
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Agenda'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Agile Metrics'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Lead Time Histogram App'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='App Histogram Example'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
