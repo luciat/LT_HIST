@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Developing Data Products Assignment</title>
+  <title>Lead Time Histogram App</title>
   <meta charset="utf-8">
-  <meta name="description" content="Developing Data Products Assignment">
+  <meta name="description" content="Lead Time Histogram App">
   <meta name="author" content="Lúcia Teresa Schalcher da Fonseca">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -32,9 +32,12 @@
     
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/logo.png">
+  </aside>
   <hgroup class="auto-fadein">
-    <h1>Developing Data Products Assignment</h1>
-    <h2>Lead Time Histogram App</h2>
+    <h1>Lead Time Histogram App</h1>
+    <h2>Coursera Developing Data Products Assignment</h2>
     <p>Lúcia Teresa Schalcher da Fonseca<br/>System Analyst</p>
   </hgroup>
   <article></article>  
@@ -44,14 +47,24 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Agenda</h2>
+    <h2>Opportunity</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Agile Metrics</li>
-<li>Lead Time Histogram App</li>
-<li>App Histogram Example</li>
-</ol>
+    <p>In my company, software development are done with agile processes.</p>
+
+<h3>Agile Metrics</h3>
+
+<ul>
+<li><p>Apart from using tradicional agile metrics, we need to manage more powerful agile metrics. One of the things we are looking for is better predictability.</p></li>
+<li><p>Examples of metrics that can help monitoring an agile project flow are Work In Progress, Lead Time and Troughput.</p>
+
+<ul>
+<li>Work in Progress: the number of items being done at a given time;</li>
+<li>Lead Time: how long each item takes to get throught the process flow;</li>
+<li>Throughput: how many items are completed per unit of time.</li>
+</ul></li>
+<li><p>Tracking these metrics and visualizing them in analytic charts can bring visibility to problems in the process flow and make the process more predictable.</p></li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -59,18 +72,15 @@
 
 <slide class="" id="slide-2" style="background:;">
   <hgroup>
-    <h2>Agile Metrics</h2>
+    <h2>Lead Time Histogram</h2>
   </hgroup>
   <article data-timings="">
-    <p>Apart from using tradicional agile metrics, we can manage an agile project flow with metrics like Work In Progress, Lead Time and Troughput.</p>
-
-<ul>
-<li>Work in Progress: the number of items being done at a given time;</li>
-<li>Lead Time: how long each item takes to get throught the process flow;</li>
-<li>Throughput: how many items are completed per unit of time.</li>
+    <ul>
+<li><p>A Lead Time Histogram gives an overall idea of the shape of the project lead time distribution.</p></li>
+<li><p>This shape can give an insigth to problems that can be ocurring in the project process.</p></li>
+<li><p>The Lead Time Histogram plots an histogram that shows frequency on the Y axis and lead time on the X axis.</p></li>
+<li><p>The percentile lines represents the percentage of the work items that took n days or less to complete, where n is the corresponding lead time value on X axis.</p></li>
 </ul>
-
-<p>Tracking these metrics and visualizing them in analytic charts can bring visibility to problems in the process flow and make the process more predictable.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -78,21 +88,20 @@
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
-    <h2>Lead Time Histogram App</h2>
+    <h2>The Lead Time Histogram App</h2>
   </hgroup>
   <article data-timings="">
-    <p>A Lead Time Histogram gives an overall idea of the shape of the project lead time distribution. This shape can give an insigth to problems that can be ocurring in the project process.</p>
-
-<p>The Lead Time Histogram App plots an histogram that shows frequency on the Y axis and lead time on the X axis. The percentile lines represents the percentage of the work items that took n days or less to complete, where n is the corresponding lead time value on X axis.</p>
-
-<p>Currently the App is a demo that uses data of a project with two type of work items. It plots the Lead Time Histogram with the percentile lines and shows a table with the average, median and the 30%, 50%, 70%, 85% and 95% lead times below the histogram. The type of work item to show can be selected.</p>
-
-<p>The idea is to improve the App with new features like:</p>
+    <ul>
+<li><p>Currently the App is a demo that uses data of a project with two type of work items: story and defect.</p></li>
+<li><p>It plots the Lead Time Histogram with the percentile lines and shows a table with the average, median and the 30%, 50%, 70%, 85% and 95% lead times below the histogram.</p></li>
+<li><p>The type of work item to show in the histogram can be selected.</p></li>
+<li><p>The idea is to improve the App with new features like:</p>
 
 <ul>
 <li>Selection of the project to analyse;</li>
 <li>Visibility of any type of work item used by the selected project;</li>
-<li>Fitting curves, like Weibull, that can help predicting future work. </li>
+<li>Fitting curves, like Weibull, that can help to improve predictability. </li>
+</ul></li>
 </ul>
 
   </article>
@@ -155,19 +164,19 @@ g &lt;- ggplot(LT) + labs(x=&quot;Lead time&quot;, y=&quot;Work done&quot;) +
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Agenda'>
+        data-slide=1 title='Opportunity'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Agile Metrics'>
+        data-slide=2 title='Lead Time Histogram'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Lead Time Histogram App'>
+        data-slide=3 title='The Lead Time Histogram App'>
          3
       </a>
     </li>

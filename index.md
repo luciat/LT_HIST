@@ -1,6 +1,6 @@
 ---
-title       : Developing Data Products Assignment
-subtitle    : Lead Time Histogram App
+title       : Lead Time Histogram App
+subtitle    : Coursera Developing Data Products Assignment
 author      : Lúcia Teresa Schalcher da Fonseca
 job         : System Analyst
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
@@ -9,41 +9,52 @@ hitheme     : tomorrow      #
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
+logo        : logo.png
 ---
 
-## Agenda
+## Opportunity
 
+In my company, software development are done with agile processes.
 
-1. Agile Metrics
-2. Lead Time Histogram App
-3. App Histogram Example
+### Agile Metrics
 
----
+- Apart from using tradicional agile metrics, we need to manage more powerful agile metrics. One of the things we are looking for is better predictability.
 
-## Agile Metrics 
+- Examples of metrics that can help monitoring an agile project flow are Work In Progress, Lead Time and Troughput.
 
-Apart from using tradicional agile metrics, we can manage an agile project flow with metrics like Work In Progress, Lead Time and Troughput.
+  - Work in Progress: the number of items being done at a given time;
+  - Lead Time: how long each item takes to get throught the process flow;
+  - Throughput: how many items are completed per unit of time.
 
-- Work in Progress: the number of items being done at a given time;
-- Lead Time: how long each item takes to get throught the process flow;
-- Throughput: how many items are completed per unit of time.
-
-Tracking these metrics and visualizing them in analytic charts can bring visibility to problems in the process flow and make the process more predictable.
+- Tracking these metrics and visualizing them in analytic charts can bring visibility to problems in the process flow and make the process more predictable.
 
 ---
 
-## Lead Time Histogram App
+## Lead Time Histogram
 
-A Lead Time Histogram gives an overall idea of the shape of the project lead time distribution. This shape can give an insigth to problems that can be ocurring in the project process.
+- A Lead Time Histogram gives an overall idea of the shape of the project lead time distribution.
 
-The Lead Time Histogram App plots an histogram that shows frequency on the Y axis and lead time on the X axis. The percentile lines represents the percentage of the work items that took n days or less to complete, where n is the corresponding lead time value on X axis.
+- This shape can give an insigth to problems that can be ocurring in the project process.
 
-Currently the App is a demo that uses data of a project with two type of work items. It plots the Lead Time Histogram with the percentile lines and shows a table with the average, median and the 30%, 50%, 70%, 85% and 95% lead times below the histogram. The type of work item to show can be selected.
+- The Lead Time Histogram plots an histogram that shows frequency on the Y axis and lead time on the X axis.
 
-The idea is to improve the App with new features like:
-- Selection of the project to analyse;
-- Visibility of any type of work item used by the selected project;
-- Fitting curves, like Weibull, that can help predicting future work. 
+- The percentile lines represents the percentage of the work items that took n days or less to complete, where n is the corresponding lead time value on X axis.
+
+---
+
+## The Lead Time Histogram App
+
+- Currently the App is a demo that uses data of a project with two type of work items: story and defect.
+
+- It plots the Lead Time Histogram with the percentile lines and shows a table with the average, median and the 30%, 50%, 70%, 85% and 95% lead times below the histogram.
+
+- The type of work item to show in the histogram can be selected.
+
+- The idea is to improve the App with new features like:
+
+  - Selection of the project to analyse;
+  - Visibility of any type of work item used by the selected project;
+  - Fitting curves, like Weibull, that can help to improve predictability. 
 
 --- &twocol .codefont
 
