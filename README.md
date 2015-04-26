@@ -1,4 +1,6 @@
-# LT_HISTThis repository contains the slidify files created for the Coursera Developing Data Products assignment.
+# LT_HIST
+
+This repository contains the slidify files created for the Coursera Developing Data Products assignment.
 
 For this assignment I've used the following bibliography and websites:
 
